@@ -6,4 +6,4 @@ from django.apps import AppConfig
 
 class ExchangerAppConfig(AppConfig):
     name = 'exchanger_app'
-    verbose_name = 'Intercambio de divisas'
+    verbose_name = 'Billetera virtual'
