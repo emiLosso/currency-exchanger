@@ -1,0 +1,19 @@
+.container-login {
+	margin-left: 5%;
+}
+
+.form-login{
+	width: 30%;
+	margin-left: 5%;
+}
+
+.title-login {
+  text-align: left;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  color: #343a40;
+}
+
+.login-label{
+	font-weight: bold;
+}
