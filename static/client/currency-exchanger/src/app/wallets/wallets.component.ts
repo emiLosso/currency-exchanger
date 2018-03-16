@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from './../services/login.service';
 
 @Component({
   selector: 'app-wallets',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WalletsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }

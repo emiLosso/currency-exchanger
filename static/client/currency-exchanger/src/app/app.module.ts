@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AlertModule } from 'ngx-bootstrap';
 
@@ -12,7 +12,9 @@ import { AppRoutingModule } from './/app-routing.module';
 import { LoginService } from './services/login.service';
 
 import { HttpClientModule }    from '@angular/common/http';
-
+import { AuthGuard } from './authentication/guards/auth.guard';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { AuthInterceptor } from './authentication/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,18 @@ import { HttpClientModule }    from '@angular/common/http';
     HttpClientModule,
   ],
   bootstrap: [AppComponent],
-  providers: [LoginService]
+  providers: [
+    AuthGuard,
+    LoginService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
+  ]
 })
+
 export class AppModule { }
+
+
+    

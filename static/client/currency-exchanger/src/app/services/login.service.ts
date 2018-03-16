@@ -38,7 +38,6 @@ export class LoginService {
                           JSON.stringify({ username: username, password: password }),
                           httpOptions).pipe(
 		tap((token:any) => {
-      console.log(token);
 			localStorage.token = token.token
 			localStorage.username = username
 		}),
