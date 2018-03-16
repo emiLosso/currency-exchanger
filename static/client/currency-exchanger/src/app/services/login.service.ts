@@ -17,6 +17,7 @@ export class LoginService {
   }
 
   isAuthenticated(): boolean {
+    console.log("token",localStorage.token)
     return localStorage.token != null
   }
 

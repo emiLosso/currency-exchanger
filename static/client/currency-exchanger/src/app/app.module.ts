@@ -15,13 +15,17 @@ import { HttpClientModule }    from '@angular/common/http';
 import { AuthGuard } from './authentication/guards/auth.guard';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthInterceptor } from './authentication/interceptors/auth.interceptor';
+import { MenuComponent } from './menu/menu.component';
+import { CurrenciesComponent } from './currencies/currencies.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    WalletsComponent
+    WalletsComponent,
+    MenuComponent,
+    CurrenciesComponent
   ],
   imports: [
     BrowserModule,

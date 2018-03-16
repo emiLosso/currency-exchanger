@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { LoginService } from './../services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
   // icon = "/assets/img/icon.png"
   icon = "http://localhost:8000/static/client/currency-exchanger/src/assets/img/icon.png"
 
-  constructor() { }
+  constructor(public loginService: LoginService) { }
 
   ngOnInit() {
   }

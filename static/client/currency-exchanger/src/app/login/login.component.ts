@@ -12,9 +12,9 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   verifyLogout(): void {
-    // if (this.loginService.isAuthenticated()) {
-    //   this.loginService.logout();
-    // }
+    if (this.loginService.isAuthenticated()) {
+      this.loginService.logout();
+    }
   }
 
   login(username:string, password:string): void {

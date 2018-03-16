@@ -1,0 +1,15 @@
+<div id="wrapper" *ngIf="loginService.isAuthenticated()">
+<!-- <div id="wrapper"> -->
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li *ngFor="let item of items">
+                <a routerLink="{{item.url}}">{{item.name}}</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+</div>
+<!-- /#wrapper -->

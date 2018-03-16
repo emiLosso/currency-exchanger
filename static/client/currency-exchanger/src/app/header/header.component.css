@@ -11,4 +11,11 @@ h2{
 
 .header{
 	background-color: #e9ecef;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #209FF2;
+}
+
+.link-logout{
+	text-decoration: none;
 }
