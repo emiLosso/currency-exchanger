@@ -9,14 +9,15 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { WalletsComponent } from './wallets/wallets.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { MenuComponent } from './menu/menu.component';
+import { CurrenciesComponent } from './currencies/currencies.component';
 import { LoginService } from './services/login.service';
+import { CurrencyService } from './services/currency.service';
 
 import { HttpClientModule }    from '@angular/common/http';
 import { AuthGuard } from './authentication/guards/auth.guard';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthInterceptor } from './authentication/interceptors/auth.interceptor';
-import { MenuComponent } from './menu/menu.component';
-import { CurrenciesComponent } from './currencies/currencies.component';
 
 @NgModule({
   declarations: [
@@ -39,10 +40,11 @@ import { CurrenciesComponent } from './currencies/currencies.component';
   providers: [
     AuthGuard,
     LoginService,
+    CurrencyService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true,
+      multi: true
     }
   ]
 })

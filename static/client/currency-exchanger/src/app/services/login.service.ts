@@ -12,12 +12,13 @@ export class LoginService {
 
   constructor( private http: HttpClient, private router: Router) { }
 
+  //methods
+
   getToken(): string {
     return localStorage.token
   }
 
   isAuthenticated(): boolean {
-    console.log("token",localStorage.token)
     return localStorage.token != null
   }
 

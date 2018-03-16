@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(username:string, password:string): void {
-    console.log(username)
     if (!username) { return; }
     if (!password) { return; }
     this.loginService.login(username, password)

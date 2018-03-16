@@ -14,6 +14,9 @@ const routes: Routes = [
   { path: 'wallets', component: WalletsComponent, canActivate: [AuthGuard]},
   { path: 'currencies', component: CurrenciesComponent, canActivate: [AuthGuard]},
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuard]},
+  // { path: 'wallets', component: WalletsComponent},
+  // { path: 'currencies', component: CurrenciesComponent},
+  // { path: 'menu', component: MenuComponent},
 ];
 
 @NgModule({
