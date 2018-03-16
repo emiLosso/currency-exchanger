@@ -9,6 +9,9 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { WalletsComponent } from './wallets/wallets.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { LoginService } from './services/login.service';
+
+import { HttpClientModule }    from '@angular/common/http';
 
 
 @NgModule({
@@ -23,9 +26,10 @@ import { AppRoutingModule } from './/app-routing.module';
   	FormsModule,
     NgbModule.forRoot(),
     AlertModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [LoginService]
 })
 export class AppModule { }

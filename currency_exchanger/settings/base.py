@@ -1,5 +1,6 @@
 import os
 from os.path import abspath, dirname, join
+import datetime
 
 
 def root(*dirs):
@@ -17,16 +18,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'exchanger_app',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'currency_exchanger.urls'
@@ -88,3 +91,29 @@ PROJECT_ROOT = root()
 MEDIA_ROOT = root('media')
 
 MEDIA_URL = '/media/'
+
+# REST framework JWT Auth
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+JWT_AUTH = {
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+    'JWT_AUTH_COOKIE': 'JWT',
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=1800)
+}
+
+# CORS ORIGIN ENABLED
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:4200',
+    'localhost:8000'
+)

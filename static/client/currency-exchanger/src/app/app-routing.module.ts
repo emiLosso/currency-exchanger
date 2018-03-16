@@ -4,7 +4,7 @@ import { WalletsComponent }      from './wallets/wallets.component';
 import { LoginComponent }      from './login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/wallets', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'wallets', component: WalletsComponent},
   { path: 'login', component: LoginComponent},
 ];

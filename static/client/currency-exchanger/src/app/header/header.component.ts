@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Input() title: String;
+  // icon = "/assets/img/icon.png"
+  icon = "http://localhost:8000/static/client/currency-exchanger/src/assets/img/icon.png"
 
   constructor() { }
 
