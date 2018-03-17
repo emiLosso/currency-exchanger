@@ -19,6 +19,7 @@ import { HttpClientModule }    from '@angular/common/http';
 import { AuthGuard } from './authentication/guards/auth.guard';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthInterceptor } from './authentication/interceptors/auth.interceptor';
+import { CurrencyDetailComponent } from './currency-detail/currency-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthInterceptor } from './authentication/interceptors/auth.interceptor'
     HeaderComponent,
     WalletsComponent,
     MenuComponent,
-    CurrenciesComponent
+    CurrenciesComponent,
+    CurrencyDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,14 @@
-<div class="container currency">
-	<div class="button-container">
+<div class="generic-container">
+	<div class="flex">
 	  <h3>Available Currencies</h3>
-	  <button class="btn btn-success add" data-toggle="modal" data-target="#currencyModal">
+	  <button class="btn btn-success bmargin" data-toggle="modal" data-target="#currencyModal">
 	    Add Currency
 	  </button>
 	</div>
 
 	<ul class="currencies">
 	  <li *ngFor="let currency of currencies">
-	    <a routerLink="/detail/{{currency.id}}">
+	    <a routerLink="/currency/{{currency.id}}">
 	      <span class="badge">{{currency.sign}}</span> {{currency.name}}
 	    </a>
 	    <button class="delete" title="delete currency"
@@ -18,50 +18,49 @@
 </div>
 
 
-<!-- <div class="container currency">
-	<div class="button-container">
+<!-- <div class="generic-container">
+	<div class="flex">
 	  <h3>Available Currencies</h3>
-	  <button class="btn btn-success add" data-toggle="modal" data-target="#currencyModal">
+	  <button class="btn btn-success bmargin" data-toggle="modal" data-target="#currencyModal">
 	    Add Currency
 	  </button>
 	</div>
 
 	<ul class="currencies">
 	  <li>
-	    <a>
+	    <a routerLink="/currency/1">
 	      <span class="badge">$</span> Peso argentino
 	    </a>
-	    <button class="delete" title="delete hero">x</button>
+	    <button class="delete " title="delete currency"><fa [name]="'trash'"></fa></button>
 	  </li>
 	  <li>
 	    <a>
 	      <span class="badge">$</span> Peso argentino
 	    </a>
-	    <button class="delete" title="delete hero">x</button>
+	    <button class="delete " title="delete currency"><fa [name]="'trash'"></fa></button>
 	  </li>
 	  <li>
 	    <a>
 	      <span class="badge">$</span> Peso argentino
 	    </a>
-	    <button class="delete" title="delete hero">x</button>
+	    <button class="delete " title="delete currency"><fa [name]="'trash'"></fa></button>
 	  </li>
 	  <li>
 	    <a>
 	      <span class="badge">$</span> Peso argentino
 	    </a>
-	    <button class="delete" title="delete hero">x</button>
+	    <button class="delete " title="delete currency"><fa [name]="'trash'"></fa></button>
 	  </li>
 	  <li>
 	    <a>
 	      <span class="badge">$</span> Peso argentino
 	    </a>
-	    <button class="delete " title="delete currency"><fa [name]="'edit'"></fa></button>
 	    <button class="delete " title="delete currency"><fa [name]="'trash'"></fa></button>
 	  </li>
 	</ul>
 
-</div> -->
-
+</div>
+ -->
 
 <!-- <h2 class="title">Available Currencies</h2>
 

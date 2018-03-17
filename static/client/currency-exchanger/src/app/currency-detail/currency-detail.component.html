@@ -1,0 +1,21 @@
+<div class="generic-container">
+	<div class="flex">
+	  <h3>Currency Details</h3>
+	  <button class="btn btn btn-secondary bmargin" (click)="goBack()"> 
+	    Go back
+	  </button>
+	</div>
+	  <div class="detail-container">
+	    <form>
+	      <div class="form-group">
+	        <label for="name" class="label-col">Name:</label>
+	        <input [(ngModel)]="currency.name" placeholder="new name" name="name">
+	      </div>
+	      <div class="form-group">
+	        <label for="name" class="label-col">Sign:</label>
+	        <input [(ngModel)]="currency.sign" placeholder="sign like $" name="symbol">
+	      </div>
+	    </form>
+	    <button class="btn btn-primary" (click)="save()">Save</button>
+	  </div>
+</div>
