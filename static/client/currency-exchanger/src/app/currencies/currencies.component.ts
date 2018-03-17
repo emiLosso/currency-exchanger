@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyService } from './../services/currency.service';
+import { AlertifyService } from './../services/alertify.service';
 import { Currency } from './../classes/currency';
 
 // to use jquery
@@ -14,7 +15,7 @@ declare var $ :any;
 export class CurrenciesComponent implements OnInit {
   currencies: Currency[];
 
-  constructor(private currencyService: CurrencyService) { }
+  constructor(private currencyService: CurrencyService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.getCurrencies();
@@ -76,12 +77,18 @@ export class CurrenciesComponent implements OnInit {
   // }
 
   delete(currency: Currency): void {
-    this.currencyService.deleteCurrency(currency).subscribe(error => {
-      if (error) return;
-      
-      this.currencies = this.currencies.filter(c => c !== currency);
-
+    // confirm dialog
+    this.alertify.confirm('Are you sure you want to remove this currency?',
+    () => {
+      //delete
+      this.currencyService.deleteCurrency(currency).subscribe(error => {
+        if (error) return;
+          this.currencies = this.currencies.filter(c => c !== currency);
+          this.alertify.alert(`The currency ${currency.name} was deleted`)
+       });
     });
+
+
   }
 
 }

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AlertModule } from 'ngx-bootstrap';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
+import { AlertifyService } from './services/alertify.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -45,6 +46,7 @@ import { CurrencyDetailComponent } from './currency-detail/currency-detail.compo
     AuthGuard,
     LoginService,
     CurrencyService,
+    AlertifyService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
