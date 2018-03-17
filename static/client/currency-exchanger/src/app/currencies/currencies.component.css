@@ -1,55 +1,102 @@
+/*container*/
 .currency{
 	margin-left: 30%;
 	margin-top: 2%;
+  width: auto;
 }
 
-/*styles tuto*/
-
-/* HeroesComponent's private CSS styles */
-.selected {
-  background-color: #CFD8DC !important;
-  color: white;
-}
-.heroes {
-  margin: 0 0 2em 0;
+/*styles*/
+.currencies {
   list-style-type: none;
   padding: 0;
-  width: 15em;
+  margin: 0 auto;
+  margin-top: 2em;
 }
-.heroes li {
-  cursor: pointer;
+
+.currencies li {
   position: relative;
-  left: 0;
+  cursor: pointer;
   background-color: #EEE;
-  margin: .5em;
-  padding: .3em 0;
-  height: 1.6em;
+  margin-bottom: 1em;
+  padding: 1em;
+  height: 1em;
   border-radius: 4px;
+  width: 17em;
 }
-.heroes li.selected:hover {
-  background-color: #BBD8DC !important;
-  color: white;
-}
-.heroes li:hover {
+ 
+.currencies li:hover {
   color: #607D8B;
   background-color: #DDD;
   left: .1em;
 }
-.heroes .text {
+ 
+.currencies a {
+  color: #888;
+  text-decoration: none;
   position: relative;
-  top: -3px;
+  display: block;
+  margin-top: -1em;
 }
-.heroes .badge {
-  display: inline-block;
+ 
+.currencies a:hover {
+  color:#607D8B;
+}
+ 
+.currencies .badge {
   font-size: small;
   color: white;
   padding: 0.8em 0.7em 0 0.7em;
-  background-color: #607D8B;
+  /*background-color: #607D8B;*/
+  background-color: #2f9fe6;
   line-height: 1em;
   position: relative;
-  left: -1px;
-  top: -4px;
-  height: 1.8em;
+  left: -15px;
+  height: 2.4em;
+  text-align: right;
   margin-right: .8em;
+  width: 4.5em;
+  text-align: center;
   border-radius: 4px 0 0 4px;
+}
+
+.button-container{
+  display: flex;
+}
+
+.add{
+  margin-left: 2%;
+}
+
+h3{
+  color: #495057;
+}
+ 
+/*sacar*/
+
+/*.button {
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+  font-family: Arial;
+}*/
+ 
+/*button:hover {
+  background-color: #cfd8dc;
+}*/
+ 
+button.delete {
+  position: relative;
+  left: 225px;
+  top: -31px;
+  background-color: gray;
+  color: white;
+  width: 2em;
+  height: 2em;
+}
+
+.buttons {
+  text-align: center
 }

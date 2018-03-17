@@ -1,7 +1,5 @@
-<div id="wrapper" *ngIf="loginService.isAuthenticated()">
-<!-- <div id="wrapper"> -->
-
-    <!-- Sidebar -->
+<div id="wrapper" class="menu" *ngIf="loginService.isAuthenticated()">
+<!-- <div id="wrapper" class="menu"> -->
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li *ngFor="let item of items">
@@ -9,7 +7,4 @@
             </li>
         </ul>
     </div>
-    <!-- /#sidebar-wrapper -->
-
 </div>
-<!-- /#wrapper -->

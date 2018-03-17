@@ -1,23 +1,66 @@
 <div class="container currency">
-<h3>Available Currencies</h3>
-	<div>
-	  <button (click)="add(heroName.value); heroName.value=''">
-	    add
+	<div class="button-container">
+	  <h3>Available Currencies</h3>
+	  <button class="btn btn-success add" data-toggle="modal" data-target="#currencyModal">
+	    Add Currency
 	  </button>
 	</div>
 
-	<ul class="heroes">
+	<ul class="currencies">
 	  <li *ngFor="let currency of currencies">
 	    <a routerLink="/detail/{{currency.id}}">
 	      <span class="badge">{{currency.sign}}</span> {{currency.name}}
 	    </a>
-	    <button class="delete" title="delete hero"
-	    (click)="delete(currency)">x</button>
+	    <button class="delete" title="delete currency"
+	    (click)="delete(currency)"><fa [name]="'trash'"></fa></button>
+	  </li>
+	</ul>
+</div>
+
+
+<!-- <div class="container currency">
+	<div class="button-container">
+	  <h3>Available Currencies</h3>
+	  <button class="btn btn-success add" data-toggle="modal" data-target="#currencyModal">
+	    Add Currency
+	  </button>
+	</div>
+
+	<ul class="currencies">
+	  <li>
+	    <a>
+	      <span class="badge">$</span> Peso argentino
+	    </a>
+	    <button class="delete" title="delete hero">x</button>
+	  </li>
+	  <li>
+	    <a>
+	      <span class="badge">$</span> Peso argentino
+	    </a>
+	    <button class="delete" title="delete hero">x</button>
+	  </li>
+	  <li>
+	    <a>
+	      <span class="badge">$</span> Peso argentino
+	    </a>
+	    <button class="delete" title="delete hero">x</button>
+	  </li>
+	  <li>
+	    <a>
+	      <span class="badge">$</span> Peso argentino
+	    </a>
+	    <button class="delete" title="delete hero">x</button>
+	  </li>
+	  <li>
+	    <a>
+	      <span class="badge">$</span> Peso argentino
+	    </a>
+	    <button class="delete " title="delete currency"><fa [name]="'edit'"></fa></button>
+	    <button class="delete " title="delete currency"><fa [name]="'trash'"></fa></button>
 	  </li>
 	</ul>
 
-</div>
-
+</div> -->
 
 
 <!-- <h2 class="title">Available Currencies</h2>

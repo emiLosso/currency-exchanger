@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AlertModule } from 'ngx-bootstrap';
+import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -35,6 +36,7 @@ import { AuthInterceptor } from './authentication/interceptors/auth.interceptor'
     AlertModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    Angular2FontawesomeModule
   ],
   bootstrap: [AppComponent],
   providers: [

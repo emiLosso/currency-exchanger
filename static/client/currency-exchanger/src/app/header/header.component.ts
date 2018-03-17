@@ -9,8 +9,8 @@ import { LoginService } from './../services/login.service';
 export class HeaderComponent implements OnInit {
 
   @Input() title: String;
-  icon = "/assets/img/icon.png"
-  // icon = "http://localhost:8000/static/client/currency-exchanger/src/assets/img/icon.png"
+  // icon = "/assets/img/icon.png"
+  icon = "http://localhost:8000/static/client/currency-exchanger/src/assets/img/icon.png"
 
   constructor(public loginService: LoginService) { }
 
