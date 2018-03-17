@@ -1,7 +1,7 @@
 <div class="generic-container">
 	<div class="flex">
 	  <h3><span class="user">{{user | uppercase}}</span> Wallets</h3>
-	  <button class="btn btn-success bmargin" data-toggle="modal" data-target="#currencyModal">
+	  <button class="btn btn-success bmargin" data-toggle="modal" data-target="#walletModal" id="newWallet">
 	    Add Wallet
 	  </button>
 	</div>
@@ -19,7 +19,7 @@
 <!-- <div class="generic-container">
 	<div class="flex">
 	  <h3><span class="user">Emi's</span> Wallets</h3>
-	  <button class="btn btn-success bmargin" data-toggle="modal" data-target="#currencyModal">
+	  <button class="btn btn-success bmargin" data-toggle="modal" data-target="#walletModal">
 	    Add Wallet
 	  </button>
 	</div>
@@ -43,6 +43,36 @@
 
 <!-- popup add wallet -->
 
+<!-- <div class="modal fade" id="walletModal" tabindex="-1" role="dialog" aria-labelledby="walletModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4> New Wallet </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	    <form>
+          <div class="form-group">
+            <label for="currency">Currency</label>
+            <select #walletCurrency class="form-control" [(ngModel)]="selectedCurrency" name="selectedCurrency">
+              <option [ngValue]="currency">Peso Argentino</option>
+              <option [ngValue]="currency">Dolar</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary mr-auto" (click)="add()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
 <div class="modal fade" id="walletModal" tabindex="-1" role="dialog" aria-labelledby="walletModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -53,23 +83,18 @@
         </button>
       </div>
       <div class="modal-body">
-
 	    <form>
-	      <div class="form-group">
-	        <label for="name" class="label-col">Name:</label>
-	        <input #currencyName placeholder="new name" name="name">
-	      </div>
-	      <div class="form-group">
-	        <label for="name" class="label-col">Sign:</label>
-	        <input #currencySign placeholder="sign like $" name="symbol">
-	      </div>
-	    </form>
-
+          <div class="form-group">
+            <label for="currency">Currency</label>
+            <select #walletCurrency class="form-control" [(ngModel)]="selectedCurrency" name="selectedCurrency">
+              <option *ngFor="let currency of currencies" [ngValue]="currency">{{currency.name}}</option>
+            </select>
+          </div>
+        </form>
       </div>
-
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary mr-auto" (click)="add(currencyName.value, currencySign.value)">Submit</button>
+        <button type="button" class="btn btn-primary mr-auto" (click)="add()">Submit</button>
       </div>
     </div>
   </div>

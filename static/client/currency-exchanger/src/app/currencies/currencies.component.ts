@@ -54,7 +54,7 @@ export class CurrenciesComponent implements OnInit {
       this.currencyService.deleteCurrency(currency).subscribe(error => {
         if (error) return;
           this.currencies = this.currencies.filter(c => c !== currency);
-          this.alertify.success(`The currency ${currency.name} was deleted`)
+          this.alertify.warning(`The currency ${currency.name} was deleted`)
        });
     });
   }

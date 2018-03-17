@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WalletService } from './../services/wallet.service';
+import { CurrencyService } from './../services/currency.service';
 import { AlertifyService } from './../services/alertify.service';
 import { Wallet } from './../classes/wallet';
 import { Currency } from './../classes/currency';
@@ -15,16 +16,17 @@ declare var $ :any;
 })
 export class WalletsComponent implements OnInit {
   wallets: Wallet[];
-  selectedCurrency: Currency;
-  selectedWallet: Wallet;
   currencies: Currency[];
   user: String;
+  selectedCurrency: Currency;
 
-  constructor(private walletService: WalletService, private alertify: AlertifyService) { }
+  constructor(private walletService: WalletService, private currencyService: CurrencyService,
+              private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.user = localStorage.username;
-  	this.getWallets();
+    this.getWallets();
+    this.getCurrencies();
   }
 
   getWallets(): void {
@@ -32,23 +34,14 @@ export class WalletsComponent implements OnInit {
     .subscribe(wallets => this.wallets = wallets);
   }
 
-  // add(wallet: Wallet, balance: integer): void {
-
-  //   if (!wallet) return this.alertify.error('Must select a wallet');
-  //   if (!balance) return this.alertify.error('Must enter an amount');
-  //   // fijarse lo de monto negativo
-
-  //   this.walletService.addWallet({ wallet, balance } as Wallet)
-  //     .subscribe(currency => {
-  //       if (currency) {
-  //         $('#currencyModal').modal('hide');
-
-  //         this.alertify.success("Currency created")
-
-  //         this.currencies.push(currency);
-  //       }
-  //     });
-  // }
+  getCurrencies(): void {
+    this.currencyService.getHaventCurrencies()
+        .subscribe(currencies => {
+          this.currencies = currencies
+          if (currencies.length === 0) return $('#newWallet').hide();
+          $('#newWallet').show()
+        });
+  }
 
   add(): void {
     if (!this.selectedCurrency) return this.alertify.error('Must select a currency');
@@ -57,23 +50,16 @@ export class WalletsComponent implements OnInit {
 
     this.walletService.addWallet({ currency } as Wallet)
       .subscribe(wallet => {
-
         if (wallet) {
           $('#walletModal').modal('hide');
 
-          // swal({
-          //   title: 'Wallet created',
-          //   type: 'success',
-          // })
+          this.alertify.success("Wallet created")
 
           this.wallets.push(wallet);
           this.currencies = this.currencies.filter(c => c.name != wallet.currency.name)
           if (this.currencies.length === 0) return $('#newWallet').hide();
         } else {
-          // swal({
-          //   title: 'Error creating wallet',
-          //   type: 'error',
-          // })
+          this.alertify.error("Error creating wallet");
         }
 
       });
@@ -86,8 +72,12 @@ export class WalletsComponent implements OnInit {
       //delete
       this.walletService.deleteWallet(wallet).subscribe(error => {
         if (error) return;
-          this.wallets = this.wallets.filter(c => c !== wallet);
-          this.alertify.success(`The wallet of currency ${wallet.currency.name} was deleted`)
+          this.currencies = this.currencies.filter(c => c !== currency);
+          this.alertify.warning(`The wallet of currency ${wallet.currency.name} was deleted`)
+          this.wallets = this.wallets.filter(w => w !== wallet);
+          const currency: Currency = wallet.currency
+          this.currencies.push(currency);
+          $('#newWallet').show();
        });
     });
   }

@@ -66,6 +66,16 @@ export class CurrencyService {
     );
   }
 
+  // FOR WALLETS CONTROLLER:currencies that a user hasn't in your wallets
+  getHaventCurrencies (): Observable<Currency[]> {
+    const url = `${this.currencyUrl}/havent_currencies/`
+    return this.http.get<Currency[]>(url)
+      .pipe(
+        // tap(currencies => console.log(`fetched currencies`)), // Do something
+        catchError(this.handleError('fetching currencies', []))
+      );
+  }
+
   // HANDLE HTTP OPERATIONS WHEN FAILED
   private handleError<T> (operation = 'operation', result?: T) {
      return (error: any): Observable<T> => {
