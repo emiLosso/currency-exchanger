@@ -51,11 +51,15 @@ export class CurrencyService {
 
   deleteCurrency (currency: Currency | number): Observable<Currency> {
     const id = typeof currency === 'number' ? currency : currency.id;
-    const url = `${this.currencyUrl}/${id}`;
+    const url = `${this.currencyUrl}/${id}/`;
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
 
     return this.http.delete<Currency>(url, httpOptions).pipe(
       // tap(_ => this.log(`deleted hero id=${id}`)),
-      catchError(this.handleError<Currency>('deleteCurrency'))
+      catchError(this.handleError<any>('deleteCurrency'))
     );
   }
 

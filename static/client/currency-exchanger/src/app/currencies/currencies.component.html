@@ -17,7 +17,6 @@
 	</ul>
 </div>
 
-
 <!-- <div class="generic-container">
 	<div class="flex">
 	  <h3>Available Currencies</h3>
@@ -59,61 +58,35 @@
 	  </li>
 	</ul>
 
-</div>
- -->
+</div> -->
 
-<!-- <h2 class="title">Available Currencies</h2>
-
-<div class="buttons">
-  <button class="btn btn-outline-success" data-toggle="modal" data-target="#currencyModal">
-    New Currency
-  </button>
-</div>
+<!-- popup add currency -->
 
 <div class="modal fade" id="currencyModal" tabindex="-1" role="dialog" aria-labelledby="currencyModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Currency</h5>
+        <h4> New Currency </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        
-        <form>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input #currencyName class="form-control" placeholder="Enter a name" aria-describedby="currencyNameHelp"/>
-            <small id="currencyNameHelp" class="form-text text-muted">Be sure the name does not exist</small>
-          </div>
-
-          <div class="form-group">
-            <label for="name">Symbol</label>
-            <input #currencySymbol class="form-control" placeholder="Enter a symbol" aria-describedby="currencySymbolHelp"/>
-            <small id="currencySymbolHelp" class="form-text text-muted">Like USD$, ARS$...</small>
-          </div>
-
-        </form>
-
+	    <form>
+	      <div class="form-group">
+	        <label for="name" class="label-col">Name:</label>
+	        <input #currencyName placeholder="new name" name="name">
+	      </div>
+	      <div class="form-group">
+	        <label for="name" class="label-col">Sign:</label>
+	        <input #currencySign placeholder="sign like $" name="symbol">
+	      </div>
+	    </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="add(currencyName.value, currencySymbol.value)">Submit</button>
+        <button type="button" class="btn btn-primary mr-auto" (click)="add(currencyName.value, currencySign.value)">Submit</button>
       </div>
     </div>
   </div>
 </div>
-
-
-
-<ul class="currencies">
-  <li *ngFor="let currency of currencies">
-    <a routerLink="/detail/{{currency.id}}">
-      <span class="badge">{{currency.symbol}}</span> {{currency.name}}
-    </a>
-
-    <button class="delete btn" title="delete currency"
-    (click)="delete(currency)"><fa name="trash"></fa></button>
-  </li>
-</ul> -->
