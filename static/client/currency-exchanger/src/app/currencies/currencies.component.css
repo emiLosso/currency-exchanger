@@ -1,11 +1,4 @@
-/*container*/
-.currency{
-	margin-left: 30%;
-	margin-top: 2%;
-  width: auto;
-}
-
-/*styles*/
+/*styles of currencies*/
 .currencies {
   list-style-type: none;
   padding: 0;

@@ -13,14 +13,15 @@ import { WalletsComponent } from './wallets/wallets.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { MenuComponent } from './menu/menu.component';
 import { CurrenciesComponent } from './currencies/currencies.component';
+import { CurrencyDetailComponent } from './currency-detail/currency-detail.component';
 import { LoginService } from './services/login.service';
 import { CurrencyService } from './services/currency.service';
+import { WalletService } from './services/wallet.service';
 
 import { HttpClientModule }    from '@angular/common/http';
 import { AuthGuard } from './authentication/guards/auth.guard';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthInterceptor } from './authentication/interceptors/auth.interceptor';
-import { CurrencyDetailComponent } from './currency-detail/currency-detail.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CurrencyDetailComponent } from './currency-detail/currency-detail.compo
     LoginService,
     CurrencyService,
     AlertifyService,
+    WalletService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

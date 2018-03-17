@@ -5,6 +5,8 @@ import { catchError, map, tap } from 'rxjs/operators'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Currency } from './../classes/currency';
 import { LoginService } from './../services/login.service';
+import { AlertifyService } from './../services/alertify.service';
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,7 +17,8 @@ export class CurrencyService {
 
   private currencyUrl = 'http://localhost:8000/api/currencies';
 
-  constructor( private http: HttpClient, private loginService:LoginService) { }
+  constructor( private http: HttpClient, private loginService:LoginService,
+               private alertify:AlertifyService) { }
 
   //methods
   getCurrencies (): Observable<Currency[]> {
@@ -63,24 +66,28 @@ export class CurrencyService {
     );
   }
 
-  //HANDLE ERRORS
-	 /**
-	 * Handle Http operation that failed.
-	 * Let the app continue.
-	 * @param operation - name of the operation that failed
-	 * @param result - optional value to return as the observable result
-	 */
-	private handleError<T> (operation = 'operation', result?: T) {
-	  return (error: any): Observable<T> => {
+  // HANDLE HTTP OPERATIONS WHEN FAILED
+  private handleError<T> (operation = 'operation', result?: T) {
+     return (error: any): Observable<T> => {
+       let errorMsg: string;
 
-	    // TODO: send the error to remote logging infrastructure
-	    console.error(error); // log to console instead
+       const hasDetail = error.error.detail ? true : false
 
-	    // TODO: better job of transforming error for user consumption
-	    // this.log(`${operation} failed: ${error.message}`);
+       if (hasDetail) {
+         errorMsg = error.error.detail
+       } else {
+         let key = Object.keys(error.error)[0]
+         errorMsg = error.error[key][0]
+       }
 
-	    // Let the app keep running by returning an empty result.
-	    return of(result as T);
-	  };
-	}
+       errorMsg = typeof errorMsg === 'string' ? errorMsg : 'server error, can not load response'
+
+       this.alertify.alert(`Error ${operation}: ${errorMsg}`)
+
+       if (error.status === 401) this.loginService.logout();
+
+       return of(result as T);
+     };
+  }
+
 }

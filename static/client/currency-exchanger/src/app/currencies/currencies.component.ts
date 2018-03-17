@@ -30,65 +30,33 @@ export class CurrenciesComponent implements OnInit {
     name = name.trim();
     sign = sign.trim();
 
-    if (!name) return alert('Must enter a name');
-    if (!sign) return alert('Must enter a sign');
-    if (sign.length > 5) return alert('The sign must contain less than 5 characters');
+    if (!name) return this.alertify.error('Must enter a name');
+    if (!sign) return this.alertify.error('Must enter a sign');
+    if (sign.length > 5) return this.alertify.error('The sign must contain less than 5 characters');
 
     this.currencyService.addCurrency({ name, sign } as Currency)
       .subscribe(currency => {
         if (currency) {
           $('#currencyModal').modal('hide');
 
-          // swal({
-          //   title: 'Currency created',
-          //   type: 'success',
-          // })
-
-          alert("currency created")
+          this.alertify.success("Currency created")
 
           this.currencies.push(currency);
         }
       });
   }
 
-  // delete(currency: Currency): void {
-  //   swal({
-  //     title: 'Are you sure?',
-  //     text: `All wallets with ${currency.name} currency will be destroy`,
-  //     type: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonText: 'Delete',
-  //     cancelButtonText: 'Cancel'
-  //   }).then((result) => {
-  //     if (result.value) {
-  //       this.currencyService.deleteCurrency(currency).subscribe(error => {
-  //         if (error) return;
-          
-  //         this.currencies = this.currencies.filter(c => c !== currency);
-
-  //         swal(
-  //           'Deleted!',
-  //           `The currency ${currency.name} was deleted`,
-  //           'success'
-  //         )
-  //       });
-  //     }
-  //   })
-  // }
-
   delete(currency: Currency): void {
     // confirm dialog
-    this.alertify.confirm('Are you sure you want to remove this currency?',
+    this.alertify.confirm(`Are you sure you want to remove <span class="bolder">${currency.name}</span> currency? <div> All wallets with <span class="bolder">${currency.name}</span> currency will be destroy </div>`,
     () => {
       //delete
       this.currencyService.deleteCurrency(currency).subscribe(error => {
         if (error) return;
           this.currencies = this.currencies.filter(c => c !== currency);
-          this.alertify.alert(`The currency ${currency.name} was deleted`)
+          this.alertify.success(`The currency ${currency.name} was deleted`)
        });
     });
-
-
   }
 
 }

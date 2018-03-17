@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { LoginService } from './../services/login.service';
+import { AlertifyService } from './../services/alertify.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,8 @@ import { LoginService } from './../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private alertify: AlertifyService,
+              private router: Router) { }
 
   verifyLogout(): void {
     if (this.loginService.isAuthenticated()) {
@@ -18,12 +20,12 @@ export class LoginComponent implements OnInit {
   }
 
   login(username:string, password:string): void {
-    if (!username) { return; }
-    if (!password) { return; }
+    if (!username) { this.alertify.error("Must enter a username"); return}
+    if (!password) { this.alertify.error("Must enter a password"); return}
     this.loginService.login(username, password)
       .subscribe(logged => {
         if (logged == null) {
-          alert("bad credentials")
+          this.alertify.error("Bad credentials")
         } else {
           this.router.navigate(['/wallets']);
         }

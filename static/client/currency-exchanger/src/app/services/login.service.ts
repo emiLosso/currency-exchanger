@@ -4,13 +4,15 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AlertifyService } from './../services/alertify.service';
 
 @Injectable()
 export class LoginService {
 
   private loginUrl = 'http://localhost:8000/api/api-token-auth';  // URL to web api
 
-  constructor( private http: HttpClient, private router: Router) { }
+  constructor( private http: HttpClient, private router: Router,
+               private alertify: AlertifyService) { }
 
   //methods
 
@@ -47,25 +49,28 @@ export class LoginService {
     );
   }
 
-  //HANDLE ERRORS
-	 /**
-	 * Handle Http operation that failed.
-	 * Let the app continue.
-	 * @param operation - name of the operation that failed
-	 * @param result - optional value to return as the observable result
-	 */
-	private handleError<T> (operation = 'operation', result?: T) {
-	  return (error: any): Observable<T> => {
+  // HANDLE HTTP OPERATIONS WHEN FAILED
+  private handleError<T> (operation = 'operation', result?: T) {
+     return (error: any): Observable<T> => {
+       let errorMsg: string;
 
-	    // TODO: send the error to remote logging infrastructure
-	    console.error(error); // log to console instead
+       const hasDetail = error.error.detail ? true : false
 
-	    // TODO: better job of transforming error for user consumption
-	    // this.log(`${operation} failed: ${error.message}`);
+       if (hasDetail) {
+         errorMsg = error.error.detail
+       } else {
+         let key = Object.keys(error.error)[0]
+         errorMsg = error.error[key][0]
+       }
 
-	    // Let the app keep running by returning an empty result.
-	    return of(result as T);
-	  };
-	}
+       errorMsg = typeof errorMsg === 'string' ? errorMsg : 'server error, can not load response'
+
+       this.alertify.alert(`Error ${operation}: ${errorMsg}`)
+
+       if (error.status === 401) this.logout();
+
+       return of(result as T);
+     };
+  }
 
 }

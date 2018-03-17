@@ -30,10 +30,10 @@ class Wallet(models.Model):
         verbose_name_plural = "Billeteras"
 
     def __str__(self):
-        return self.user.username + ': ' + self.currency.symbol + ' ' + str(self.balance)
+        return self.user.username + ': ' + self.currency.sign + ' ' + str(self.balance)
 
     def __unicode__(self):
-        return u'%s%s%s%s%s' % (self.user.username, ': ', self.currency.symbol, ' ', self.balance)
+        return u'%s%s%s%s%s' % (self.user.username, ': ', self.currency.sign, ' ', self.balance)
 
     def add(self, amount):
         self.balance += amount

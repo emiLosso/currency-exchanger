@@ -30,3 +30,17 @@ body, input[text], button {
 .flex{
   display: flex;
 }
+
+.notifications{
+  color: #515b65c7;
+  font-size: 15pt;
+}
+
+.notifications_red{
+  color: #bd2130;
+  font-size: 15pt;
+}
+
+.bolder{
+  font-weight: bolder;
+}

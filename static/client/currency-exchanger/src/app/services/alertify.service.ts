@@ -14,11 +14,26 @@ export class AlertifyService {
 		    } else {
 		        // user clicked "cancel"
 		    }
-		});
+		}).setHeader("<em class='notifications'> Notification </em>");
 	}
 
 	alert(message: string){
-		alertify.alert(message);
+		alertify.alert(message).setHeader("<em class='notifications_red'> Error </em>");
 	}
 
+	success(message: string){
+		alertify.success(message);
+	}
+
+	error(message: string){
+		alertify.error(message);
+	}
+
+	warning(message: string){
+		alertify.warning(message);
+	}
+
+	message(message: string){
+		alertify.message(message);
+	}
 }
