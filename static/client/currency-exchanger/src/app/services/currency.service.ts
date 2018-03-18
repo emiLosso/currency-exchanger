@@ -24,7 +24,6 @@ export class CurrencyService {
   getCurrencies (): Observable<Currency[]> {
     return this.http.get<Currency[]>(this.currencyUrl+'/')
       .pipe(
-        // tap(currencies => this.log(`fetched currencies`)),
         catchError(this.handleError('getCurrencies', []))
       );
   }
@@ -32,7 +31,6 @@ export class CurrencyService {
   getCurrency(id: number): Observable<Currency> {
     const url = `${this.currencyUrl}/${id}/`;
     return this.http.get<Currency>(url).pipe(
-      // tap(_ => console.log(`fetched currency id=${id}`)),
       catchError(this.handleError<Currency>('getCurrency'))
     );
   }
@@ -40,14 +38,12 @@ export class CurrencyService {
   updateCurrency (currency: Currency): Observable<any> {
   	const url = `${this.currencyUrl}/${currency.id}/`
     return this.http.put(url, currency, httpOptions).pipe(
-      // tap(_ => this.log(`updated currency id=${currency.id}`)),
       catchError(this.handleError<any>('updateCurrency'))
     );
   }
 
   addCurrency (currency: Currency): Observable<Currency> {
     return this.http.post<Currency>(this.currencyUrl + '/', currency, httpOptions).pipe(
-      // tap((currency: Currency) => this.log(`added currency w/ id=${currency.id}`)),
       catchError(this.handleError<Currency>('addCurrency'))
     );
   }
@@ -61,7 +57,6 @@ export class CurrencyService {
     };
 
     return this.http.delete<Currency>(url, httpOptions).pipe(
-      // tap(_ => this.log(`deleted hero id=${id}`)),
       catchError(this.handleError<any>('deleteCurrency'))
     );
   }
@@ -71,7 +66,6 @@ export class CurrencyService {
     const url = `${this.currencyUrl}/havent_currencies/`
     return this.http.get<Currency[]>(url)
       .pipe(
-        // tap(currencies => console.log(`fetched currencies`)), // Do something
         catchError(this.handleError('fetching currencies', []))
       );
   }

@@ -5,7 +5,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AlertModule } from 'ngx-bootstrap';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 import { AlertifyService } from './services/alertify.service';
-
+// components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,10 +14,14 @@ import { AppRoutingModule } from './/app-routing.module';
 import { MenuComponent } from './menu/menu.component';
 import { CurrenciesComponent } from './currencies/currencies.component';
 import { CurrencyDetailComponent } from './currency-detail/currency-detail.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+// services
 import { LoginService } from './services/login.service';
 import { CurrencyService } from './services/currency.service';
 import { WalletService } from './services/wallet.service';
-
+import { TransactionService} from './services/transaction.service';
+import { UserService} from './services/user.service';
+// rest
 import { HttpClientModule }    from '@angular/common/http';
 import { AuthGuard } from './authentication/guards/auth.guard';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -31,7 +35,8 @@ import { AuthInterceptor } from './authentication/interceptors/auth.interceptor'
     WalletsComponent,
     MenuComponent,
     CurrenciesComponent,
-    CurrencyDetailComponent
+    CurrencyDetailComponent,
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +54,8 @@ import { AuthInterceptor } from './authentication/interceptors/auth.interceptor'
     CurrencyService,
     AlertifyService,
     WalletService,
+    TransactionService,
+    UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

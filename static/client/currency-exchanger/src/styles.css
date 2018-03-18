@@ -44,3 +44,8 @@ body, input[text], button {
 .bolder{
   font-weight: bolder;
 }
+
+.label-bold{
+  color: #495057;
+  font-weight: bolder;
+}

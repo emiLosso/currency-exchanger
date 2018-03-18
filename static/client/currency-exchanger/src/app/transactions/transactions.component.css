@@ -1,0 +1,91 @@
+/*styles of transactions*/
+
+.transactions {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  margin-top: 2em;
+}
+
+.transactions li {
+  position: relative;
+  cursor: pointer;
+  background-color: #EEE;
+  margin-bottom: 1em;
+  padding: 1em;
+  height: 1em;
+  border-radius: 4px;
+  width: 30em;
+}
+ 
+.transactions li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+ 
+.transactions a {
+  color: #888;
+  text-decoration: none;
+  position: relative;
+  display: block;
+  margin-top: -1em;
+}
+ 
+.transactions a:hover {
+  color:#607D8B;
+}
+ 
+.transactions .badge {
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  /*background-color: #607D8B;*/
+  background-color: #2f9fe6;
+  line-height: 1em;
+  position: relative;
+  left: -15px;
+  height: 2.4em;
+  text-align: right;
+  margin-right: .8em;
+  width: 4.5em;
+  text-align: center;
+  border-radius: 4px 0 0 4px;
+}
+
+.bmargin{
+  margin-left: 2%;
+}
+
+h3, h4{
+  color: #495057;
+}
+
+.label-col{
+  width: 15%;
+  color: #495057;
+  font-weight: bolder;
+}
+
+.user{
+  font-weight: bolder;
+}
+
+.date{
+  width: 11em !important;
+}
+
+.person{
+  width: 11em !important;
+  background-color: green !important;
+  border-radius: 0 !important;
+  left: -30px !important;
+}
+
+.amount_plus{
+  color: green;
+}
+
+.amount_min{
+  color: red;
+}

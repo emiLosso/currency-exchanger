@@ -15,7 +15,6 @@ export class LoginService {
                private alertify: AlertifyService) { }
 
   //methods
-
   getToken(): string {
     return localStorage.token
   }
