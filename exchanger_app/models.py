@@ -63,7 +63,7 @@ class Transaction(models.Model):
         users = 'From: ' + self.origin.user.username + ' To: ' + self.destination.user.username
         return u'%s%s%s%s%s' % (users, ' Amount: ', str(self.amount), ' ', str(self.date_time))
 
-    def make_transaction(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
         same_currency = self.origin.currency == self.destination.currency
         enough_money = self.origin.balance >= self.amount
 
@@ -71,7 +71,7 @@ class Transaction(models.Model):
             if enough_money:
                 if self.amount >= 0:
                     self.origin.remove(self.amount)
-                    self.destination.sum(self.amount)
+                    self.destination.add(self.amount)
                     return super(Transaction, self).save(*args, **kwargs)
                 else:
                     return {'error': 'Amount must be positive'}
