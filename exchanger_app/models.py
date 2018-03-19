@@ -57,11 +57,11 @@ class Transaction(models.Model):
 
     def __str__(self):
         users = 'From: ' + self.origin.user.username + ' To: ' + self.destination.user.username
-        return users + ' Amount: ' + self.amount + ' ' + str(self.date_time)
+        return users + ' Amount: ' + str(self.amount) + ' ' + str(self.date_time)
 
     def __unicode__(self):
         users = 'From: ' + self.origin.user.username + ' To: ' + self.destination.user.username
-        return u'%s%s%s%s%s' % (users, ' Amount: ', self.amount, ' ', str(self.date_time))
+        return u'%s%s%s%s%s' % (users, ' Amount: ', str(self.amount), ' ', str(self.date_time))
 
     def make_transaction(self, *args, **kwargs):
         same_currency = self.origin.currency == self.destination.currency

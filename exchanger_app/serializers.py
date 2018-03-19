@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(max_length=100)
+    id = serializers.IntegerField()
 
     class Meta:
         model = User
@@ -45,8 +47,8 @@ class TransactionSerializer(serializers.ModelSerializer):
         destination = Wallet.objects.get(pk=validated_data['destination']['id'])
         amount = validated_data['amount']
         transac = Transaction(
-            origin=origin,
             destination=destination,
+            origin=origin,
             amount=amount
         )
         search_error = transac.save()

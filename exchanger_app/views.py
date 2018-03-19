@@ -7,7 +7,7 @@ from rest_framework import permissions
 from rest_framework import viewsets
 from django.views import generic
 from django.shortcuts import render
-from rest_framework.decorators import list_route
+from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
 
 
@@ -52,6 +52,21 @@ class WalletViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         return Wallet.objects.filter(user=user)
+
+    # return the wallet of a user and currency
+    @detail_route(methods=['post'])
+    def get_wallet_of_user(self, request, pk=None):
+        user = User.objects.get(pk=pk)
+        wallets_of = Wallet.objects.filter(
+            user=user).filter(currency=request.data['id'])
+
+        if wallets_of:
+            serializer = self.get_serializer(wallets_of, many=True)
+            return Response(serializer.data)
+
+        return Response(
+            {'detail': 'The user has not wallet a of this currency'},
+            status=400)
 
 
 class TransactionViewSet(viewsets.ModelViewSet):

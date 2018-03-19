@@ -8,89 +8,21 @@
 
 	<ul class="transactions">
 	  <li *ngFor="let transaction of transactions">
-	    <a href=""> 
-	      <span class="badge date">{{transaction.date_time.date}}</span>
-	      <span class="badge person">To: {{transaction.destination.user.username}}</span>
-	      <span class="amount_min"> - {{transaction.amount}}{{transaction.origin.sign}}</span>
+	    <a *ngIf="sameUser(transaction.origin.user.username); else plus"> 
+	      <span class="badge date">{{transaction.date_time | date}}</span>
+	      <span class="badge person">To: {{transaction.destination.user.username | uppercase}}</span>
+	      <span class="amount_min"> - {{transaction.amount}} {{transaction.origin.currency.sign}}</span>
 	    </a>
+   		<ng-template #plus>
+		    <a> 
+		      <span class="badge date">{{transaction.date_time | date}}</span>
+		      <span class="badge person">From: {{transaction.origin.user.username | uppercase}}</span>
+		      <span class="amount_plus"> + {{transaction.amount}} {{transaction.origin.currency.sign}}</span>
+		    </a>
+		 </ng-template>
 	  </li>
 	</ul>
 </div>
-
-<!-- <div class="generic-container">
-	<div class="flex">
-	  <h3><span class="user">EMI</span> Transactions</h3>
-	  <button class="btn btn-success bmargin" data-toggle="modal" data-target="#transactionModal">
-	    Add Transaction
-	  </button>
-	</div>
-
-	<ul class="transactions">
-	  <li>
-	    <a href="">
-	      <span class="badge date">10/03/2018 15:00hs.</span>
-	      <span class="badge person">To: EMI</span>
-	      <span class="amount_min"> - 10$</span>
-	    </a>
-	  </li>
-	  <li>
-	    <a href="">
-	      <span class="badge date">14/03/2018 22:00hs.</span>
-	      <span class="badge person">From: JUAN</span> 
-	      <span class="amount_plus"> + 100 U$D</span>
-	    </a>
-	  </li>
-	</ul>
-</div> -->
-
-<!-- popup add transaction -->
-
-<!-- <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4> New Transaction </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-	    <form>
-
-          <div class="form-group">
-            <label for="wallet" class="label-bold">Wallet From:</label>
-            <select #walletFrom class="form-control" [(ngModel)]="selectedWallet" name="selectedWallet">
-              <option [ngValue]="currency">Peso Argentino - 100$</option>
-              <option [ngValue]="currency">Dolar - 200 U$D</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-	    	 <label for="currency" class="label-bold">To User:</label>
-	    	 <select #userTo class="form-control" [(ngModel)]="selectedUser" name="selectedUser">
-	    	    <option>
-	    	    	Emi
-	    	    </option>
-	    	    <option>
-	    	    	Juan
-	    	    </option>
-	    	 </select>
-	      </div>
-
-	      <div class="form-group">
-	        <label for="name" class="label-col">Amount:</label>
-	        <input #amount placeholder="Enter an amount">
-	      </div>
-
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary mr-auto" (click)="add()">Submit</button>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 
 <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModal" aria-hidden="true">
@@ -131,7 +63,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary mr-auto" (click)="add()">Submit</button>
+        <button type="button" class="btn btn-primary mr-auto" (click)="add(amount.value)">Submit</button>
       </div>
     </div>
   </div>

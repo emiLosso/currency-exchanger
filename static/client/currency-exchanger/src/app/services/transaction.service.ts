@@ -26,6 +26,12 @@ export class TransactionService {
       );
   }
 
+  addTransaction(transaction: Transaction): Observable<Transaction> {
+    return this.http.post<Transaction>(this.transactionUrl + '/', transaction, httpOptions).pipe(
+      catchError(this.handleError<Transaction>('createTransaction'))
+    );
+  }
+
   // HANDLE HTTP OPERATIONS WHEN FAILED
   private handleError<T> (operation = 'operation', result?: T) {
      return (error: any): Observable<T> => {
@@ -42,9 +48,9 @@ export class TransactionService {
 
        errorMsg = typeof errorMsg === 'string' ? errorMsg : 'server error, can not load response'
 
-       // this.alertify.alert(`Error ${operation}: ${errorMsg}`)
+       this.alertify.alert(`Error ${operation}: ${errorMsg}`)
 
-       // if (error.status === 401) this.loginService.logout();
+       if (error.status === 401) this.loginService.logout();
 
        return of(result as T);
      };

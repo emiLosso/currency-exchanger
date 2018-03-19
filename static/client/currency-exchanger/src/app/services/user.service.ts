@@ -42,9 +42,9 @@ export class UserService {
 
        errorMsg = typeof errorMsg === 'string' ? errorMsg : 'server error, can not load response'
 
-       // this.alertify.alert(`Error ${operation}: ${errorMsg}`)
+       this.alertify.alert(`Error ${operation}: ${errorMsg}`)
 
-       // if (error.status === 401) this.loginService.logout();
+       if (error.status === 401) this.loginService.logout();
 
        return of(result as T);
      };

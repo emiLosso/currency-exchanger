@@ -4,6 +4,8 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Wallet } from './../classes/wallet';
+import { User } from './../classes/user';
+import { Currency } from './../classes/currency';
 import { LoginService } from './../services/login.service';
 import { AlertifyService } from './../services/alertify.service';
 
@@ -46,15 +48,14 @@ export class WalletService {
     );
   }
 
-  // getWalletsOfUser(user: User, currency: Currency): Observable<Wallet> {
-  //   const url = `${this.walletUrl}/${user.id}/get_wallets_of_user/`;
+  getWalletOfUser(user: User, currency: Currency): Observable<Wallet> {
+    const url = `${this.walletUrl}/${user.id}/get_wallet_of_user/`;
 
-  //   return this.http.post<Wallet>(url, currency, httpOptions).pipe(
-  //     // tap(_ => console.log(`fetched wallet of user =${user.username}`)), // Do something
-  //     catchError(this.handleError<Wallet>(`getting ${user.username} wallet of ${currency.name}`))
-  //   );
+    return this.http.post<Wallet>(url, currency, httpOptions).pipe(
+      catchError(this.handleError2<any>('error'))
+    );
 
-  // }
+  }
 
   // HANDLE HTTP OPERATIONS WHEN FAILED
   private handleError<T> (operation = 'operation', result?: T) {
@@ -72,9 +73,32 @@ export class WalletService {
 
        errorMsg = typeof errorMsg === 'string' ? errorMsg : 'server error, can not load response'
 
+       this.alertify.alert(`Error ${operation}: ${errorMsg}`)
+
+       if (error.status === 401) this.loginService.logout();
+
+       return of(result as T);
+     };
+  }
+
+  private handleError2<T> (operation = 'operation', result?: T) {
+     return (error: any): Observable<T> => {
+       let errorMsg: string;
+
+       const hasDetail = error.error.detail ? true : false
+
+       if (hasDetail) {
+         errorMsg = error.error.detail
+       } else {
+         let key = Object.keys(error.error)[0]
+         errorMsg = error.error[key][0]
+       }
+
+       errorMsg = typeof errorMsg === 'string' ? errorMsg : 'server error, can not load response'
+
        // this.alertify.alert(`Error ${operation}: ${errorMsg}`)
 
-       // if (error.status === 401) this.loginService.logout();
+       if (error.status === 401) this.loginService.logout();
 
        return of(result as T);
      };
