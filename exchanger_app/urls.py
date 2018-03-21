@@ -7,9 +7,15 @@ router = DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'wallets', views.WalletViewSet)
 router.register(r'transactions', views.TransactionViewSet)
-router.register(r'currencies', views.CurrencyViewSet)
+router.register(r'currencies', views.CurrencyViewSet, base_name="currencies")
+
+
+# urlpatterns = [
+#     url(r'^api/', include(router.urls)),
+# ]
 
 
 urlpatterns = [
-    url(r'^api', include(router.urls)),
+    url(r'^api/', include(router.urls,
+                          namespace='api'), ),
 ]

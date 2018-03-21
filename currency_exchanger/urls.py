@@ -7,7 +7,7 @@ app_name = 'exchanger_app'
 
 urlpatterns = [
     url(r'^', include('exchanger_app.urls')),
-    url(r'^admin', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
     url(r'^api/api-token-auth/', obtain_jwt_token),
     url(r'^', views.AppView.as_view()),
 ]
