@@ -11,6 +11,7 @@ In the console run the following commands:
 ### Server
 + Activate a virtualenv: `source env/bin/activate`
 + `pip install -r requirements.txt`
++ `cp currency_exchanger/settings/secrets_example.py currency_exchanger/settings/secrets.py`
 + `python manage.py migrate`
 + `python manage.py loaddata fixtures/currencies.json`
 + Create some users with: `python manage.py createsuperuser`
