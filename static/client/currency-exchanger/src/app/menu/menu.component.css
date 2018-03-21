@@ -1,6 +1,6 @@
 /*container*/
 .menu{
-    position: absolute;
+    position: fixed !important;
     height: 100%;
     top: auto;
     left: 0;
