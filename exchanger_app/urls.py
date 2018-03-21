@@ -7,7 +7,7 @@ router = DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'wallets', views.WalletViewSet)
 router.register(r'transactions', views.TransactionViewSet)
-router.register(r'currencies', views.CurrencyViewSet, name='currencies')
+router.register(r'currencies', views.CurrencyViewSet)
 
 
 urlpatterns = [
