@@ -11,5 +11,5 @@ router.register(r'currencies', views.CurrencyViewSet)
 
 
 urlpatterns = [
-    url(r'^api/', include(router.urls)),
+    url(r'^api', include(router.urls)),
 ]

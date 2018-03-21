@@ -10,15 +10,17 @@ In the console run the following commands:
 
 ### Server
 + Activate a virtualenv: `source env/bin/activate`
++ In the project folder:
 + `pip install -r requirements.txt`
 + `cp currency_exchanger/settings/secrets_example.py currency_exchanger/settings/secrets.py`
++ `python manage.py makemigrations`
 + `python manage.py migrate`
-+ `python manage.py loaddata fixtures/currencies.json`
++ `python manage.py loaddata static/fixtures/currencies.json`
 + Create some users with: `python manage.py createsuperuser`
 
 ### Client
 + `cd static/client/currency-exchanger`
-+ `npm install -g @angular/cli`
++ `sudo npm install -g @angular/cli`
 + `npm install`
 + `ng build`
 + `cd ..` three times
