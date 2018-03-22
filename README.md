@@ -2,7 +2,7 @@
 
 Project that shows the use of a currency and its operations developed with [Django](http://www.djangoproject.com/), [Django-rest-framework](http://www.django-rest-framework.org/) and [AngularJS](https://angular.io/).
 
-### Installing
+## Installing
 
 A step by step series of examples that tell you have to get a development env running
 
@@ -27,7 +27,7 @@ In the console run the following commands:
 + `python manage.py runserver`
 + Go to [localhost](http://localhost:8000)
 
-### Example
+## Example
 + Login with a user created
 + Create a wallet for example of Peso Argentino curreny
 + Logout and login with other user created
@@ -35,7 +35,7 @@ In the console run the following commands:
 + Make a transaction of 100 Pesos to the previous user.
 + See the result of the operation and make other transactions and operations in the site.
 
-### Test
+## Test
 
 Running this commands you can test some API operations
 
