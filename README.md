@@ -34,3 +34,13 @@ In the console run the following commands:
 + Create a wallet of Peso Argentino too, because the sender and the receiver must have a wallet of same currency
 + Make a transaction of 100 Pesos to the previous user.
 + See the result of the operation and make other transactions and operations in the site.
+
+### Test
+
+Running this commands you can test some API operations
+
++ python manage.py test exchanger_app.tests.ApiTestCase.test_api_can_create_a_currency --keepdb
++ python manage.py test exchanger_app.tests.ApiTestCase.test_api_can_get_a_currency --keepdb
++ python manage.py test exchanger_app.tests.ApiTestCase.test_api_can_update_currency --keepdb
++ python manage.py test exchanger_app.tests.ApiTestCase.test_api_can_delete_currency --keepdb
++ python manage.py test exchanger_app.tests.ApiTestCase.test_api_can_create_a_transaction --keepdb
